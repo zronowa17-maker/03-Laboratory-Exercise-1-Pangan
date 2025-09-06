@@ -12,9 +12,18 @@ namespace OrganizationProfile
 {
     public partial class frmRegistration : Form
     {
+        private string _FullName;
+        private int _Age;
+        private long _ContactNo;
+        private string _StudentNo;
         public frmRegistration()
         {
             InitializeComponent();
+        }
+
+        private void frmRegistration_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
