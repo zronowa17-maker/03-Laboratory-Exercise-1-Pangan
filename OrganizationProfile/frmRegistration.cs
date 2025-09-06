@@ -24,37 +24,91 @@ namespace OrganizationProfile
 
         public long StudentNumber(string studNum)
         {
-            _StudentNo = long.Parse(studNum);
+            try
+            {
+                _StudentNo = long.Parse(studNum);
+            }
+            catch (Exception)
+            {
+                _StudentNo = 0; 
+            }
+     
+            finally
+            {
+                Console.WriteLine("Student Number parsing finished.");
+            }
             return _StudentNo;
         }
 
         public long ContactNo(string Contact)
         {
-            if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$"))
+            try
             {
-                _ContactNo = long.Parse(Contact);
+                if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$"))
+                {
+                    _ContactNo = long.Parse(Contact);
+                }
+                else
+                {
+                    _ContactNo = 0; 
+                }
             }
-
+            catch (Exception)
+            {
+                _ContactNo = 0;
+            }
+            finally
+            {
+                Console.WriteLine("Contact Number parsing finished.");
+            }
             return _ContactNo;
         }
 
         public string FullName(string LastName, string FirstName, string MiddleInitial)
         {
-            if (Regex.IsMatch(LastName, @"^[a-zA-Z]+$") || Regex.IsMatch(FirstName, @"^[a-zA-Z]+$") || Regex.IsMatch(MiddleInitial, @"^[a-zA-Z]+$"))
+            try
             {
-                _FullName = LastName + ", " + FirstName + ", " + MiddleInitial;
+                if (Regex.IsMatch(LastName, @"^[a-zA-Z]+$") && Regex.IsMatch(FirstName, @"^[a-zA-Z]+$") && Regex.IsMatch(MiddleInitial, @"^[a-zA-Z]+$"))
+                {
+                    _FullName = LastName + ", " + FirstName + " " + MiddleInitial;
+                }
+                else
+                {
+                    _FullName = ""; 
+                }
             }
-
+            catch (Exception)
+            {
+                _FullName = "";
+            }
+            finally
+            {
+                Console.WriteLine("Full Name parsing finished.");
+            }
             return _FullName;
         }
 
         public int Age(string age)
         {
-            if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
+            try
             {
-                _Age = Int32.Parse(age);
+                if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
+                {
+                    _Age = Int32.Parse(age);
+                }
+                else
+                {
+                    _Age = 0; 
+                }
             }
-
+            catch (Exception)
+            {
+                _Age = 0;
+            }
+            finally
+            {
+                Console.WriteLine("Age parsing finished.");
+            }
             return _Age;
         }
 
