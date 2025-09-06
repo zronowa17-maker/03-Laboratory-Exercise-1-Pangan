@@ -89,19 +89,14 @@ namespace OrganizationProfile
                 {
                     throw new ArgumentNullException("Name fields can only contain letters.");
                 }
-                return _FullName;
             }
             catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message, "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "";
-            }
-            catch (IndexOutOfRangeException)
-            {
                 
-                MessageBox.Show("An array index was out of bounds.", "Array Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "";
+                _FullName = "";
             }
+            return _FullName;
         }
 
         public int Age(string age)
@@ -173,6 +168,7 @@ namespace OrganizationProfile
 
             frmConfirmation frm = new frmConfirmation();
             frm.ShowDialog();
+
         }
     }
 }
