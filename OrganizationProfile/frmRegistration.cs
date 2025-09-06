@@ -27,18 +27,25 @@ namespace OrganizationProfile
             try
             {
                 _StudentNo = long.Parse(studNum);
+                return _StudentNo;
             }
-            catch (Exception)
+            catch (FormatException)
             {
-                _StudentNo = 0; 
+                MessageBox.Show("Student Number must be a valid number.", "Invalid Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
             }
-     
-            finally
+            catch (OverflowException)
             {
-                Console.WriteLine("Student Number parsing finished.");
+                MessageBox.Show("Student Number is too large.", "Overflow Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
             }
-            return _StudentNo;
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Student Number cannot be empty.", "Empty Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
         }
+
         public long ContactNo(string Contact)
         {
             try
@@ -46,19 +53,28 @@ namespace OrganizationProfile
                 if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$"))
                 {
                     _ContactNo = long.Parse(Contact);
+                    return _ContactNo;
                 }
                 else
                 {
-                    
                     throw new FormatException("Contact No. must be 10 or 11 digits.");
                 }
             }
-            catch (Exception ex)
+            catch (FormatException ex)
             {
-               
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(ex.Message, "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
             }
-            return _ContactNo;
+            catch (OverflowException)
+            {
+                MessageBox.Show("Contact No. is too large.", "Overflow Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Contact No. cannot be empty.", "Empty Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
         }
 
         public string FullName(string LastName, string FirstName, string MiddleInitial)
@@ -71,15 +87,21 @@ namespace OrganizationProfile
                 }
                 else
                 {
-                    
-                    throw new FormatException("Name fields can only contain letters.");
+                    throw new ArgumentNullException("Name fields can only contain letters.");
                 }
+                return _FullName;
             }
-            catch (Exception ex)
+            catch (ArgumentNullException ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(ex.Message, "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
             }
-            return _FullName;
+            catch (IndexOutOfRangeException)
+            {
+                
+                MessageBox.Show("An array index was out of bounds.", "Array Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
         }
 
         public int Age(string age)
@@ -92,16 +114,27 @@ namespace OrganizationProfile
                 }
                 else
                 {
-                    
                     throw new FormatException("Age must be between 1 to 3 digits.");
                 }
+                return _Age;
             }
-            catch (Exception ex)
+            catch (FormatException ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(ex.Message, "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
             }
-            return _Age;
+            catch (OverflowException)
+            {
+                MessageBox.Show("Age value is too large.", "Overflow Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Age cannot be empty.", "Empty Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
         }
+
 
 
 
