@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OrganizationProfile
 {
@@ -15,6 +16,11 @@ namespace OrganizationProfile
         public frmConfirmation()
         {
             InitializeComponent();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

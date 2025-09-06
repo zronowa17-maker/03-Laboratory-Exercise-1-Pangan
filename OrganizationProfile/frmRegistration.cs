@@ -75,6 +75,25 @@ namespace OrganizationProfile
 
             }
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            StudentNumber(txtStudentNumber.Text);
+            FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
+            Age(txtAge.Text);
+            ContactNo(txtContactNo.Text);
+
+            StudentInformationClass.SetFullName = _FullName;
+            StudentInformationClass.SetStudentNumber = _StudentNo.ToString();
+            StudentInformationClass.SetProgram = cbPrograms.Text;
+            StudentInformationClass.SetGender = cbGender.Text;
+            StudentInformationClass.SetContactNo = _ContactNo.ToString();
+            StudentInformationClass.SetAge = _Age;
+            StudentInformationClass.SetBirthday = datePickerBirthday.Value.ToString("yyyy-MM-dd");
+
+            frmConfirmation frm = new frmConfirmation();
+            frm.ShowDialog();
+        }
     }
 }
 
