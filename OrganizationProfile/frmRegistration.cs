@@ -39,7 +39,6 @@ namespace OrganizationProfile
             }
             return _StudentNo;
         }
-
         public long ContactNo(string Contact)
         {
             try
@@ -50,16 +49,14 @@ namespace OrganizationProfile
                 }
                 else
                 {
-                    _ContactNo = 0; 
+                    
+                    throw new FormatException("Contact No. must be 10 or 11 digits.");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _ContactNo = 0;
-            }
-            finally
-            {
-                Console.WriteLine("Contact Number parsing finished.");
+               
+                MessageBox.Show("Error: " + ex.Message);
             }
             return _ContactNo;
         }
@@ -74,16 +71,13 @@ namespace OrganizationProfile
                 }
                 else
                 {
-                    _FullName = ""; 
+                    
+                    throw new FormatException("Name fields can only contain letters.");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _FullName = "";
-            }
-            finally
-            {
-                Console.WriteLine("Full Name parsing finished.");
+                MessageBox.Show("Error: " + ex.Message);
             }
             return _FullName;
         }
@@ -98,19 +92,18 @@ namespace OrganizationProfile
                 }
                 else
                 {
-                    _Age = 0; 
+                    
+                    throw new FormatException("Age must be between 1 to 3 digits.");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _Age = 0;
-            }
-            finally
-            {
-                Console.WriteLine("Age parsing finished.");
+                MessageBox.Show("Error: " + ex.Message);
             }
             return _Age;
         }
+
+
 
         private void frmRegistration_Load(object sender, EventArgs e)
         {
